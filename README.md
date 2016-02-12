@@ -4,7 +4,7 @@ Cram every NFL play of the 2014 season into Elasticsearch - for fun and profit.
 ##Instructions
 Edit the `ElasticNFL.php` script to reflect your endpoint settings (namely `$endpoint`).
 
-Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the 2014 Super Bowl is accessed as: `/nfl/2015020100/3`.
+Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the 2015 Super Bowl is accessed as: `/nfl/2015020100/3`.
 
 ##Example Queries
 Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospal, but they're good enough for learning purposes.
