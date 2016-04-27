@@ -1,13 +1,20 @@
 # ElasticNFL
 Cram every NFL play of the 2014 season into Elasticsearch - for fun and profit.
 
+Tested on Elasticsearch 2.3.2.
+
+##Installation
+I'm on OS X, Elasticsearch and all of it's dependencies can be installed using [brew](http://brew.sh/): `brew install elasticsearch`
+
+I'm using one machine as the Elasticsearch host, and my dev/client on another. Elasticsearch likes RAM, on the server run `ES_HEAP_SIZE=12g elasticsearch -Dnetwork.host=0.0.0.0` to get started.
+
 ##Instructions
 Edit the `ElasticNFL.php` script to reflect your endpoint settings (namely `$endpoint`).
 
-Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the 2015 Super Bowl is accessed as: `/nfl/2015020100/3`.
+Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the Super Bowl is accessed as: `/nfl/2015020100/3`.
 
 ##Example Queries
-Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospal, but they're good enough for learning purposes.
+Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospel, but they're good enough for learning purposes.
 
 
 ###Average yards to go per down:

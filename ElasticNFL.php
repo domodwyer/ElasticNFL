@@ -80,7 +80,7 @@
 //  }
 // } 
 
-$endpoint = 'opportunity.local:9200';
+$endpoint = '10.3.63.21:9200';
 $ch = curl_init();
 
 function get_data($ch, $game) {
@@ -94,17 +94,14 @@ function get_data($ch, $game) {
 	return $data;
 }
 
-function set_mapping($ch, $game) {
+function create_index($ch, $game) {
 	global $endpoint;
 	$map = [
 		$game => [
-			'_timestamp': {
-	            'enabled': 'true'
-	        },
-			'properties' => [
+			'mappings' => [
 				'desc' 		=> ['type' => 'string', 'analyzer' => 'english'],
 				'down' 		=> ['type' => 'long'],
-				'drive' 	=> ['type' => 'long'],
+				'drive' 	=> ['type' => 'string'],
 				'players'	=> [
 					'type' => 'object',
 					'properties' => [
@@ -126,7 +123,7 @@ function set_mapping($ch, $game) {
 		]
 	];
 
-	$url = "http://".$endpoint."/nfl/".$game."/_mapping";
+	$url = "http://".$endpoint."/nfl/";
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
@@ -487,7 +484,7 @@ foreach ($games as $key => $game) {
 	echo "Fetching game #".($key+1)."\n";
 
 	$data = json_decode(get_data($ch, $game));
-	set_mapping($ch, $game);
+	create_index($ch, $game);
 	
 	foreach ($data->$game->drives as $driveKey => $drive) {
 		if($driveKey == 'crntdrv')
