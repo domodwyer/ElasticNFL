@@ -103,7 +103,7 @@ function create_index($ch, $game) {
 				'down' 		=> ['type' => 'long'],
 				'drive' 	=> ['type' => 'string'],
 				'players'	=> [
-					'type' => 'object',
+					'type' => 'nested',
 					'properties' => [
 						'clubcode' 	=> ['type' => 'string'],
 						'playerName'=> ['type' => 'string'],
