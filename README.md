@@ -33,15 +33,15 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 }
 ```
 
-###Yards per drive, per team, ordered by total yards in the season:
+###Yards per team, ordered by total yards in the season:
 ```
 {    
   "aggs": {
-    "quarter": {
-      "terms": { "field": "qtr", "size": 100, "order": {"yards.sum" : "desc"} },
+    "teams": {
+      "terms": { "field": "posteam", "size": 100, "order": {"yards.sum" : "desc"} },
         "aggs": {
           "yards": {
-            "stats": {"field": "yards"}
+            "stats": {"field": "players.yards"}
         }
       }
     }
@@ -68,7 +68,7 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 			"terms": { "field": "qtr", "size": 5, "order": {"yards.sum" : "desc"} },
 				"aggs": {
 					"yards": {
-						"stats": {"field": "yards"}
+						"stats": {"field": "players.yards"}
 					}
 				}
 			}
@@ -96,7 +96,7 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
        "terms": { "field": "players.playerName", "size": 5, "order": {"yards.count" : "desc"} },
          "aggs": {
            "yards": {
-             "stats": {"field": "yards"}
+             "stats": {"field": "players.yards"}
          }
        }
      }
