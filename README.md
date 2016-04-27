@@ -14,7 +14,7 @@ Edit the `ElasticNFL.php` script to reflect your endpoint settings (namely `$end
 Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the Super Bowl is accessed as: `/nfl/2015020100/3`.
 
 ##Example Queries
-Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospel, but they're good enough for learning purposes.
+Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospel, but they're good enough for learning purposes. They're all requested via `POST http://1.2.3.4:9200/nfl/_search` with the provided JSON as the request body.
 
 
 ###Average yards to go per down:
