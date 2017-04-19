@@ -3,21 +3,21 @@ Cram every NFL play of the 2014 season into Elasticsearch - for fun and profit.
 
 Tested on Elasticsearch 2.3.2.
 
-##Installation
+## Installation
 I'm on OS X, Elasticsearch and all of it's dependencies can be installed using [brew](http://brew.sh/): `brew install elasticsearch`
 
-I'm using one machine as the Elasticsearch host, and my dev/client on another. Elasticsearch likes RAM, on the server run `ES_HEAP_SIZE=12g elasticsearch -Dnetwork.host=0.0.0.0` to get started.
+I'm using one machine as the Elasticsearch host, and my dev/client on another. Elasticsearch likes RAM, on the server run `ES_HEAP_SIZE=12g elasticsearch -Dnetwork.host=0.0.0.0` to get started with a 12GB heap.
 
-##Instructions
+## Instructions
 Edit the `ElasticNFL.php` script to reflect your endpoint settings (namely `$endpoint`).
 
 Each games goes into the _nfl_ index, under a unique per-game type (the NFL's game ID), with the play number as the document ID - this means the third play of the Super Bowl is accessed as: `/nfl/2015020100/3`.
 
-##Example Queries
+## Example Queries
 Provided are some rough-ish example queries... I wouldn't go around shouting about these stats like they're gospel, but they're good enough for learning purposes. They're all requested via `POST http://1.2.3.4:9200/nfl/_search` with the provided JSON as the request body.
 
 
-###Average yards to go per down:
+### Average yards to go per down:
 ```
 {  
   "aggs": {
@@ -33,7 +33,7 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 }
 ```
 
-###Yards per team, ordered by total yards in the season:
+### Yards per team, ordered by total yards in the season:
 ```
 {    
   "aggs": {
@@ -49,7 +49,7 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 }
 ```
 
-###Tom Brady's passing yard statistics, broken down by quarter, to anyone except Amendola:
+### Tom Brady's passing yard statistics, broken down by quarter, to anyone except Amendola:
 ```
 {
   "query": {
@@ -77,7 +77,7 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 }
 ```
 
-###NE top recievers who didn't drop the ball:
+### NE top recievers who didn't drop the ball:
 ```
 {
   "query": {
@@ -106,5 +106,5 @@ Provided are some rough-ish example queries... I wouldn't go around shouting abo
 ```
 
 
-##Notes
+## Notes
 Possibly not a good idea to cram everything into one index with a type-per-game if you've got the liberty of an entire cluster of nodes to play with.
